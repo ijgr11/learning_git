@@ -19,7 +19,7 @@ No commits yet
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
         .python-version
-        index.html
+        git_basics.md
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
@@ -59,6 +59,19 @@ Initial status of a file is **Untracked**
 In order to track a file we use:
 `git add <file name>`
 
+Which returns the following output:
+
+```sh
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   git_basics.md
+
+```
+
 After running that command the file goes from **Untracked** to **Staged**, files under the staging area means these files are ready to be **Committed**.
 
 | Untracked | Modified | Staged     | Committed |
@@ -68,11 +81,29 @@ After running that command the file goes from **Untracked** to **Staged**, files
 In order to commit a file we run:
 `git commit -m "Initial Commit"`
 
+Which returns the following output:
+
+```sh
+[master (root-commit) c0018cb] Initial Commit
+ 1 file changed, 81 insertions(+)
+ create mode 100644 git_basics.md
+```
+
 | Untracked | Modified | Staged | Committed  |
 | --------- | -------- | ------ | ---------- |
 |           |          |        | index.html |
 
 If the file is modified after being tracked (committed) then it will be changed to **Modified**
+
+```sh
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   git_basics.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
 
 | Untracked | Modified   | Staged | Committed |
 | --------- | ---------- | ------ | --------- |
