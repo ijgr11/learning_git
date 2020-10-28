@@ -59,4 +59,77 @@ But we realized there was an error with or last change ("Error #2") and we need 
 
 ### _"Going back in time"_
 
-With `git checkout <file>` we can _"go back in time"_ and check the previous states of the project, unlike other commants like `git revert` and `git reset`, `git checkout` is the **safest** one because with it we cannot change or delete previus commits.
+With `git checkout <file>` we can _"go back in time"_ and check the previous states of the project, unlike other commants like `git revert` and `git reset`, `git checkout` is the **safest** one because with it we cannot change or delete previous commits.
+
+Lets say we added new texts to our test_file:
+
+```sh
+Adding text: "Change #1"
+Adding text: "Change #2"
+Adding text: "Change #3"
+Adding text: "Error #4"
+```
+
+Checking at the history of changes `git log --oneline`, it returns:
+
+```sh
+git log --oneline
+b47ba1e (HEAD -> master) test_file1 -- Adding text: "Error #4"
+75105a4 test_file1 -- Adding text: "Change #3"
+d8fd895 test_file1 -- Adding text: "Change #2"
+855a5f5 test_file1 -- Adding text: "Change #1"
+```
+
+We realize we need to go back in time to "Change #3", we can run:
+
+`git checkout 75105a4`
+Output:
+
+```sh
+Note: switching to '75105a4'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 75105a4 test_file1 -- Adding text: "Change #3"
+```
+
+If we check the `git log` we will see that the HEAD is currently at the _Change #3_ commit.
+
+```sh
+git log --oneline
+75105a4 (HEAD) test_file1 -- Adding text: "Change #3"
+d8fd895 test_file1 -- Adding text: "Change #2"
+855a5f5 test_file1 -- Adding text: "Change #1"
+```
+
+If we want to go back to the master branch or the latest commit we run:
+`git checkout master`
+Output:
+
+```sh
+M       git_undoing_things.md
+Previous HEAD position was 75105a4 test_file1 -- Adding text: "Change #3"
+Switched to branch 'master'
+```
+
+And now the `git log` shows the HEAD at the latest commit:
+
+```sh
+b47ba1e (HEAD -> master) test_file1 -- Adding text: "Error #4"
+75105a4 test_file1 -- Adding text: "Change #3"
+d8fd895 test_file1 -- Adding text: "Change #2"
+855a5f5 test_file1 -- Adding text: "Change #1"
+```
