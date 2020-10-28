@@ -49,13 +49,17 @@ From [Git Basics - Recording Changes to the Repository](https://git-scm.com/book
 
 ### Untracked
 
-So, remember, the initial status of a file is **Untracked**
-
 | Untracked  | Modified | Staged | Committed |
 | ---------- | -------- | ------ | --------- |
 | index.html |          |        |           |
 
+So, remember, the initial status of a file is **Untracked**
+
 ### Staged
+
+| Untracked | Modified | Staged     | Committed |
+| --------- | -------- | ---------- | --------- |
+|           |          | index.html |           |
 
 In order to start tracking a file we use:
 `git add <file name>`
@@ -72,11 +76,11 @@ Changes to be committed:
 
 After running that command the file goes from **Untracked** to **Staged**, files under the staging area means these files are ready to be **Committed**.
 
-| Untracked | Modified | Staged     | Committed |
-| --------- | -------- | ---------- | --------- |
-|           |          | index.html |           |
-
 ### Committed
+
+| Untracked | Modified | Staged | Committed  |
+| --------- | -------- | ------ | ---------- |
+|           |          |        | index.html |
 
 This is the final phase, in order to commit a file we run:
 `git commit -m "Initial Commit"`
@@ -96,11 +100,11 @@ On branch master
 nothing to commit, working tree clean
 ```
 
-| Untracked | Modified | Staged | Committed  |
-| --------- | -------- | ------ | ---------- |
-|           |          |        | index.html |
-
 ### Modified
+
+| Untracked | Modified   | Staged | Committed |
+| --------- | ---------- | ------ | --------- |
+|           | index.html |        |           |
 
 If the file is modified after being tracked (committed) then it will be changed to **Modified**
 
@@ -114,8 +118,59 @@ Changes not staged for commit:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-| Untracked | Modified   | Staged | Committed |
-| --------- | ---------- | ------ | --------- |
-|           | index.html |        |           |
-
 From here it can be staged again and then committed.
+
+### Unstaging
+
+| Untracked  | Modified | Staged | Committed |
+| ---------- | -------- | ------ | --------- |
+| index.html |          |        |           |
+
+In case we committed a mistage and want to remove a file from the **\*Staged** area we can run the following command:
+`git rm --cached <file>`
+
+Which returns:
+`rm 'git_basics.md'`
+
+And status:
+
+```sh
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        deleted:    git_basics.md
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        git_basics.md
+```
+
+Also `git restore --staged <file>...` can be used to unstage changes, but most accurate it is used to move to the previous status:
+
+```sh
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   git_basics.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+## Your First commit?
+
+In your first commit you will need to identify yourself:
+
+```sh
+git config --global user.name Your Name
+git config --global user.email Your@email.com
+```
+
+To check the settings just run:
+
+```sh
+git config --global user.name
+git config --global user.email
+```
+
+## Check History
