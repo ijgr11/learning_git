@@ -1,1 +1,2 @@
 Adding text: "Change #1"
+Adding text: "Change #2"
