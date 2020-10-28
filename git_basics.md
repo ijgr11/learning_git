@@ -1,12 +1,12 @@
-# Git
+# Git - Basics
 
-## Initialize the Directory
+## Initializing the Directory
 
-Within the directory to work on enter the following command:
+In order to start using Git we need to initialize the project.
+Within the directory to work on, enter the following command:
 `git init`
 
-To display the .git folder on VSCode just edit the settings by changing exclude value for git from _true_ to _false_.
-`"\*\*/.git": false,`
+**NOTE**: To display the .git folder on VSCode just edit the settings by changing exclude value for git from _true_ to _false_. `"\*\*/.git": false,`
 
 Once the directory has been initial we can check the status of the commits.
 `git status`
@@ -29,13 +29,10 @@ Whenever we are unsure about what's the right syntaxt for git commands or what o
 
 ```sh
 GIT-STATUS(1)					Git Manual					GIT-STATUS(1)
-
 NAME
        git-status - Show the working tree status
-
 SYNOPSIS
        git status [<options>...] [--] [<pathspec>...]
-
 ...
 ```
 
@@ -50,26 +47,27 @@ From [Git Basics - Recording Changes to the Repository](https://git-scm.com/book
 
 ![alt text](https://git-scm.com/book/en/v2/images/lifecycle.png)
 
-Initial status of a file is **Untracked**
+### Untracked
+
+So, remember, the initial status of a file is **Untracked**
 
 | Untracked  | Modified | Staged | Committed |
 | ---------- | -------- | ------ | --------- |
 | index.html |          |        |           |
 
-In order to track a file we use:
+### Staged
+
+In order to start tracking a file we use:
 `git add <file name>`
 
 Which returns the following output:
 
 ```sh
 On branch master
-
 No commits yet
-
 Changes to be committed:
   (use "git rm --cached <file>..." to unstage)
         new file:   git_basics.md
-
 ```
 
 After running that command the file goes from **Untracked** to **Staged**, files under the staging area means these files are ready to be **Committed**.
@@ -78,7 +76,9 @@ After running that command the file goes from **Untracked** to **Staged**, files
 | --------- | -------- | ---------- | --------- |
 |           |          | index.html |           |
 
-In order to commit a file we run:
+### Committed
+
+This is the final phase, in order to commit a file we run:
 `git commit -m "Initial Commit"`
 
 Which returns the following output:
@@ -99,6 +99,8 @@ nothing to commit, working tree clean
 | Untracked | Modified | Staged | Committed  |
 | --------- | -------- | ------ | ---------- |
 |           |          |        | index.html |
+
+### Modified
 
 If the file is modified after being tracked (committed) then it will be changed to **Modified**
 
