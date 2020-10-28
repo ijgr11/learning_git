@@ -45,3 +45,18 @@ c0018cb HEAD@{5}: commit (initial): Initial Commit
 We can _unmodify_ files also we can _"go back in time"_ and check different states of our project, we can also move between branches.
 
 ### UnModifying Files
+
+Lets say we modified file test.txt, and added text "Error #2"
+
+```sh
+Change #1
+Error #2
+```
+
+But we realized there was an error with or last change ("Error #2") and we need to revert that, in order to revert these changes we run:
+
+`git checkout test_file1.txt`
+
+### _"Going back in time"_
+
+With `git checkout <file>` we can _"go back in time"_ and check the previous states of the project, unlike other commants like `git revert` and `git reset`, `git checkout` is the **safest** one because with it we cannot change or delete previus commits.
