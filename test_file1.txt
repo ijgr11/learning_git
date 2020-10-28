@@ -1,3 +1,4 @@
 Adding text: "Change #1"
 Adding text: "Change #2"
 Adding text: "Change #3"
+Adding text: "Error #4"
