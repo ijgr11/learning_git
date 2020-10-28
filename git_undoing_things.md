@@ -133,3 +133,144 @@ b47ba1e (HEAD -> master) test_file1 -- Adding text: "Error #4"
 d8fd895 test_file1 -- Adding text: "Change #2"
 855a5f5 test_file1 -- Adding text: "Change #1"
 ```
+
+### `git checkout` is READ ONLY
+
+`git checkout` is very safe because it is a **Read Only**, you cannot change or edit previous commits.
+
+If we go back in time to a previous commit, make changes to it, stage them and then commit them, and then we go to master again this change we just made will be erased because, again, checkout is only for **Read Only**, and experimental tests, meaning you can make the change to previous commit, you can test them and see how they work but they will never be saved.
+
+Let's see a test:
+
+Here are new commits:
+
+```sh
+~ git log --oneline
+
+3a4eba6 (HEAD -> master) test_file1 -- Adding text: "Error #8"
+dcb27ce test_file1 -- Adding text: "Change #7"
+f6bd178 test_file1 -- Adding text: "Change #6"
+2ff9388 test_file1 -- Adding text: "Change #5"
+b47ba1e test_file1 -- Adding text: "Error #4"
+75105a4 test_file1 -- Adding text: "Change #3"
+d8fd895 test_file1 -- Adding text: "Change #2"
+855a5f5 test_file1 -- Adding text: "Change #1"
+```
+
+Lets "go back" to "Change #7" by running `git checkout dcb27ce`
+
+```sh
+git log --oneline
+dcb27ce (HEAD) test_file1 -- Adding text: "Change #7"
+f6bd178 test_file1 -- Adding text: "Change #6"
+2ff9388 test_file1 -- Adding text: "Change #5"
+b47ba1e test_file1 -- Adding text: "Error #4"
+75105a4 test_file1 -- Adding text: "Change #3"
+d8fd895 test_file1 -- Adding text: "Change #2"
+855a5f5 test_file1 -- Adding text: "Change #1"
+```
+
+Nice, now lets make a change to the current commit we are on, on test_file we are removing some lines and adding new ones:
+
+current file:
+
+```sh
+Adding text: "Change #1"
+Adding text: "Change #2"
+Adding text: "Change #3"
+Adding text: "Error #4"
+Adding text: "Change #5"
+Adding text: "Change #6"
+Adding text: "Change #7"
+```
+
+new changes:
+
+```sh
+Adding text: "Change #1"
+Adding text: "Change #2"
+Adding text: "Change #3"
+THIS ARE CHANGES TO CONFIRM CHANGES WILL NOT BE SAVED.
+```
+
+Lets see the `git status`:
+
+```sh
+HEAD detached at dcb27ce
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   test_file1.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+Ok we see changes, lets stage them and then commit them:
+
+```sh
+git add test_file1.txt
+
+git status
+HEAD detached at dcb27ce
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   test_file1.txt
+
+git commit -m 'Committing changes that wont be saved'
+[detached HEAD e40ac3e] Committing changes that wont be saved
+ 1 file changed, 1 insertion(+), 4 deletions(-)
+
+git status
+HEAD detached from dcb27ce
+nothing to commit, working tree clean
+11:36:03 - isman
+
+git log --oneline
+e40ac3e (HEAD) Committing changes that wont be saved
+dcb27ce test_file1 -- Adding text: "Change #7"
+f6bd178 test_file1 -- Adding text: "Change #6"
+2ff9388 test_file1 -- Adding text: "Change #5"
+b47ba1e test_file1 -- Adding text: "Error #4"
+75105a4 test_file1 -- Adding text: "Change #3"
+d8fd895 test_file1 -- Adding text: "Change #2"
+855a5f5 test_file1 -- Adding text: "Change #1"
+```
+
+Now, lets go to the master branch once again:
+
+```sh
+git checkout master
+Warning: you are leaving 1 commit behind, not connected to
+any of your branches:
+
+  e40ac3e Committing changes that wont be saved
+
+If you want to keep it by creating a new branch, this may be a good time
+to do so with:
+
+ git branch <new-branch-name> e40ac3e
+
+Switched to branch 'master'
+```
+
+Checking the history returns no commit for the change we just made:
+
+```sh
+git log --oneline
+3a4eba6 (HEAD -> master) test_file1 -- Adding text: "Error #8"
+dcb27ce test_file1 -- Adding text: "Change #7"
+f6bd178 test_file1 -- Adding text: "Change #6"
+2ff9388 test_file1 -- Adding text: "Change #5"
+b47ba1e test_file1 -- Adding text: "Error #4"
+75105a4 test_file1 -- Adding text: "Change #3"
+d8fd895 test_file1 -- Adding text: "Change #2"
+855a5f5 test_file1 -- Adding text: "Change #1"
+```
+
+## Git Revert
+
+> The "revert" command helps you undo an existing commit.
+> It's important to understand that it does not delete any data in this process: instead, Git will create new changes with the opposite effect - and thereby undo the specified old commit.
+> The `git revert` command is used to ‘undo’ the changes you have made in the past. Simple. But unlike other undo commands, git revert will introduce a new commit that has the inverted changes.
+
+For example:
