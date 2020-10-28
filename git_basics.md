@@ -89,6 +89,13 @@ Which returns the following output:
  create mode 100644 git_basics.md
 ```
 
+git status returns:
+
+```sh
+On branch master
+nothing to commit, working tree clean
+```
+
 | Untracked | Modified | Staged | Committed  |
 | --------- | -------- | ------ | ---------- |
 |           |          |        | index.html |
