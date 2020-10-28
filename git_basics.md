@@ -174,3 +174,40 @@ git config --global user.email
 ```
 
 ## Check History
+
+In order to check the history of the commits we run:
+`git log`
+
+Which returns:
+
+```sh
+commit e4faa68b9db12e48d393ed29f34cdb0fa1b928ef (HEAD -> master)
+Author: Isma <ijgr11@gmail.com>
+Date:   Wed Oct 28 00:20:01 2020 -0600
+
+    Created new file for chapter 3
+
+commit 4663d3084b105ac8b35f085428e45532e38dbc51
+Author: Isma <ijgr11@gmail.com>
+Date:   Wed Oct 28 00:18:37 2020 -0600
+
+    Adding check git history
+
+commit c0018cb08a616e1aa264963ba80d0a55071e9c08
+Author: Isma <ijgr11@gmail.com>
+Date:   Tue Oct 27 23:42:54 2020 -0600
+
+    Initial Commit
+```
+
+We can also have this info in a summarized way:
+
+`git log --oneline`
+
+Which returns:
+
+```sh
+e4faa68 (HEAD -> master) Created new file for chapter 3
+4663d30 Adding check git history
+c0018cb Initial Commit
+```
