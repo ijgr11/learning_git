@@ -24,3 +24,25 @@
    To https://github.com/user/repo.git
    * [new branch]      master -> master
    ```
+   
+## From Github to Local
+
+Lets say we made a change in Github or any other remote place and it got updated on Github but not in our local repo (this change is made in github btw).
+
+We can sync this change into our local repo by running:
+`git push <remote_repo_name> <name_working_branch>`
+for example:
+`git pull origin master`
+Output:
+```sh
+From https://github.com/user/repo.git
+*  branch   master -> FETCH_HEAD
+Updating 642592f...fc68b22
+Fast-forward
+ 3_git_github.md | 1 +
+ 1 file changed, 1 insertion(+)
+```
+We can also pull data from the remote repo in a shorter way, we might just need to set the following command:
+`git branch --set-upstream-to=origin/master master`
+
+The first master is the branch of our repo on github, the second master is the default branch in the local repo.
