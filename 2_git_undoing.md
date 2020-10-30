@@ -6,6 +6,7 @@
 > HEAD is not a commit; it points to one, points to the last commit.
 
 To confirm that HEAD poinst to the last commit we can run:
+
 `git show HEAD`
 
 Output:
@@ -27,6 +28,7 @@ We can also see details for other commits:
 `git show e4faa68b9db12e48d393ed29f34cdb0fa1b928ef` - shows details for the commit with that ID.
 
 To get a history of all of the places HEAD has pointed you can run:
+
 `git reflog HEAD`
 
 Output:
@@ -83,6 +85,7 @@ d8fd895 test_file1 -- Adding text: "Change #2"
 We realize we need to go back in time to "Change #3", we can run:
 
 `git checkout 75105a4`
+
 Output:
 
 ```sh
@@ -116,7 +119,9 @@ d8fd895 test_file1 -- Adding text: "Change #2"
 ```
 
 If we want to go back to the master branch or the latest commit we run:
+
 `git checkout master`
+
 Output:
 
 ```sh
@@ -487,6 +492,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
 To accept the changes:
+
 `git checkout .`
 
 In the case of also removing a created file:

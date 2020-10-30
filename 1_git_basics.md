@@ -4,11 +4,13 @@
 
 In order to start using Git we need to initialize the project.
 Within the directory to work on, enter the following command:
+
 `git init`
 
 **NOTE**: To display the .git folder on VSCode just edit the settings by changing exclude value for git from _true_ to _false_. `"\*\*/.git": false,`
 
 Once the directory has been initial we can check the status of the commits.
+
 `git status`
 
 Which returns the following output:
@@ -62,6 +64,7 @@ So, remember, the initial status of a file is **Untracked**
 |           |          | index.html |           |
 
 In order to start tracking a file we use:
+
 `git add <file name>`
 
 Which returns the following output:
@@ -83,6 +86,7 @@ After running that command the file goes from **Untracked** to **Staged**, files
 |           |          |        | index.html |
 
 This is the final phase, in order to commit a file we run:
+
 `git commit -m "Initial Commit"`
 
 Which returns the following output:
@@ -127,9 +131,11 @@ From here it can be staged again and then committed.
 | index.html |          |        |           |
 
 In case we committed a mistage and want to remove a file from the **\*Staged** area we can run the following command:
+
 `git rm --cached <file>`
 
 Which returns:
+
 `rm 'git_basics.md'`
 
 And status:
@@ -176,6 +182,7 @@ git config --global user.email
 ## Check History
 
 In order to check the history of the commits we run:
+
 `git log`
 
 Which returns:
