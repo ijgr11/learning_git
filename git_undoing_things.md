@@ -274,3 +274,214 @@ d8fd895 test_file1 -- Adding text: "Change #2"
 > The `git revert` command is used to ‘undo’ the changes you have made in the past. Simple. But unlike other undo commands, git revert will introduce a new commit that has the inverted changes.
 
 For example:
+
+## Git Revert
+
+> The "revert" command helps you undo an existing commit.
+> It's important to understand that it does not delete any data in this process: instead, Git will create new changes with the opposite effect - and thereby undo the specified old commit.
+> `git revert` goes back in time and revert an specific commit but the rest of the commits stay the same.
+> The `git revert` command is used to ‘undo’ the changes you have made in the past. Simple. But unlike other undo commands, git revert will introduce a new commit that has the inverted changes.
+
+For example:
+
+```sh
+git log --oneline
+62afdae (HEAD -> master) Added file test_file2
+0c9cf4b Adding text: "Change #4"
+e27ab48 Adding text: "Error #3"
+1a50004 Adding text: "Change #2"
+834ec2b Adding text: "Change #1"
+```
+
+Reverting the changes:
+
+```sh
+git revert e27ab48
+
+[master 132c826] Revert "Adding text: "Error #3""
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+```
+
+The result is:
+
+```sh
+git log --oneline
+132c826 (HEAD -> master) Revert "Adding text: "Error #3""
+62afdae Added file test_file2
+0c9cf4b Adding text: "Change #4"
+e27ab48 Adding text: "Error #3"
+1a50004 Adding text: "Change #2"
+834ec2b Adding text: "Change #1"
+```
+
+Now the test_file1 displays:
+
+```sh
+Adding text: "Change #1"
+Adding text: "Change #2"
+```
+
+Instead of:
+
+```sh
+Adding text: "Change #1"
+Adding text: "Change #2"
+Adding text: "Error #3"
+Adding text: "Change #4"
+```
+
+And the file test_file2 is still there.
+
+If there is a change that conflicts with other changes we will be presented with a warning:
+
+```sh
+git revert 66e81a0
+Auto-merging test_file1.txt
+CONFLICT (content): Merge conflict in test_file1.txt
+error: could not revert 66e81a0... Fixed Adding text: "Change #3"
+hint: after resolving the conflicts, mark the corrected paths
+hint: with 'git add <paths>' or 'git rm <paths>'
+hint: and commit the result with 'git commit'
+```
+
+And will need to take an action
+
+```sh
+Accept Current Change | Accept Incoming Change | Accept Both Changes | Compare Changes
+
+Adding text: "Change #1"
+<<<<<<< HEAD
+Adding text: "Change #2"
+Adding text: "Change #3"
+Adding text: "Change #4"
+Adding text: "Change #5"
+Adding text: "Change #6"
+=======
+Adding text: "Change #2"
+>>>>>>> parent of 66e81a0... Fixed Adding text: "Change #3"
+```
+
+If we want t avoid the revert operation we can cancel it by running `git revert --abort` and it will go back to the latest commit.
+
+## Git Reset
+
+This is a very dangerous command if not used wisely, this command will actually delete commits from the history.
+
+### Git Reset Soft
+
+The difference between mixed and soft is that with soft the changes are not removed from staging area immediately.
+
+```sh
+git log --oneline
+bd20f70 (HEAD -> master) Removed Change 3 and Change 4 from test_file1
+d9a06a8 Added Change 5 and 6 into test1 and Change 1 and 2 into test2
+66e81a0 Fixed Adding text: "Change #3"
+132c826 Revert "Adding text: "Error #3""
+bd0c153 changes on test_file1
+62afdae Added file test_file2
+0c9cf4b Adding text: "Change #4"
+e27ab48 Adding text: "Error #3"
+1a50004 Adding text: "Change #2"
+834ec2b Adding text: "Change #1"
+```
+
+`git reset --soft 66e81a0`
+
+```sh
+git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   test_file1.txt
+        modified:   test_file2.txt
+```
+
+```sh
+git log --oneline
+66e81a0 (HEAD -> master) Fixed Adding text: "Change #3"
+132c826 Revert "Adding text: "Error #3""
+bd0c153 changes on test_file1
+62afdae Added file test_file2
+0c9cf4b Adding text: "Change #4"
+e27ab48 Adding text: "Error #3"
+1a50004 Adding text: "Change #2"
+834ec2b Adding text: "Change #1"
+```
+
+To unstage the changes
+
+`git reset .`
+
+```sh
+git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   test_file1.txt
+        modified:   test_file2.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+To commit these changes:
+
+`git checkout .`
+
+### Git Reset Mixed
+
+`git reset --mixed <id>` will remove the commits from history however it will not remove the actually changes from the files, but will unstage them, contrary to `git reset --soft <id>` which will keep the files in the stage area.
+
+```sh
+git reset --mixed 0c9cf4b
+Unstaged changes after reset:
+M       test_file1.txt
+```
+
+```sh
+git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   test_file1.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        test_file2.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+```sh
+git log --oneline
+0c9cf4b (HEAD -> master) Adding text: "Change #4"
+e27ab48 Adding text: "Error #3"
+1a50004 Adding text: "Change #2"
+834ec2b Adding text: "Change #1"
+```
+
+To accept the changes:
+`git checkout .`
+
+In the case of also removing a created file:
+
+To check which file will be removed:
+
+```sh
+git clean -n
+Would remove test_file2.txt
+```
+
+To remove that file:
+
+```sh
+git clean -f
+Removing test_file2.txt
+```
+
+### Git Reset Hard
+
+`git reset --hard <id>` will remove the commits from history, and apply the changes automatically (pretty much a hard wipe out).
+
+**ONLY USE IT IF YOU ARE SURE YOU NEED TO CLEAN SUCH CHANGES**
