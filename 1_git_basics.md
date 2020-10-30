@@ -211,3 +211,28 @@ e4faa68 (HEAD -> master) Created new file for chapter 3
 4663d30 Adding check git history
 c0018cb Initial Commit
 ```
+
+## Git Changing/Moving Names to files/folders
+
+In order to change name to a file or folder or to move it to a different location do not change it directly to the file, instead use:
+
+`git mv old_name new_name`
+
+for example:
+
+```sh
+git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        renamed:    old_name -> new_name
+```
+
+We can automatically commit after this if we desire:
+
+```sh
+git commit -m 'Changed names for files'
+[master 3e29771] Changed names for files
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+ rename old_name => new_name (100%)
+```
