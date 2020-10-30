@@ -371,6 +371,8 @@ This is a very dangerous command if not used wisely, this command will actually 
 
 The difference between mixed and soft is that with soft the changes are not removed from staging area immediately.
 
+Lets see the history of commits:
+
 ```sh
 git log --oneline
 bd20f70 (HEAD -> master) Removed Change 3 and Change 4 from test_file1
@@ -385,16 +387,10 @@ e27ab48 Adding text: "Error #3"
 834ec2b Adding text: "Change #1"
 ```
 
+Lets reset the second "Change #3"
 `git reset --soft 66e81a0`
 
-```sh
-git status
-On branch master
-Changes to be committed:
-  (use "git restore --staged <file>..." to unstage)
-        modified:   test_file1.txt
-        modified:   test_file2.txt
-```
+The new commit history looks like this:
 
 ```sh
 git log --oneline
@@ -406,6 +402,17 @@ bd0c153 changes on test_file1
 e27ab48 Adding text: "Error #3"
 1a50004 Adding text: "Change #2"
 834ec2b Adding text: "Change #1"
+```
+
+The result of soft reset is to remove all the commits from the history but left the changed files in the staging area:
+
+```sh
+git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   test_file1.txt
+        modified:   test_file2.txt
 ```
 
 To unstage the changes
@@ -424,7 +431,7 @@ Changes not staged for commit:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-To commit these changes:
+To accept these changes:
 
 `git checkout .`
 
@@ -432,10 +439,36 @@ To commit these changes:
 
 `git reset --mixed <id>` will remove the commits from history however it will not remove the actually changes from the files, but will unstage them, contrary to `git reset --soft <id>` which will keep the files in the stage area.
 
+Lets see where we are right now:
+
+```sh
+git log --oneline
+66e81a0 (HEAD -> master) Fixed Adding text: "Change #3"
+132c826 Revert "Adding text: "Error #3""
+bd0c153 changes on test_file1
+62afdae Added file test_file2
+0c9cf4b Adding text: "Change #4"
+e27ab48 Adding text: "Error #3"
+1a50004 Adding text: "Change #2"
+834ec2b Adding text: "Change #1"
+```
+
+Lets reset to "Change #4"
+
 ```sh
 git reset --mixed 0c9cf4b
 Unstaged changes after reset:
 M       test_file1.txt
+```
+
+As we can see the commits are deleted but also the changes are unstaged
+
+```sh
+git log --oneline
+0c9cf4b (HEAD -> master) Adding text: "Change #4"
+e27ab48 Adding text: "Error #3"
+1a50004 Adding text: "Change #2"
+834ec2b Adding text: "Change #1"
 ```
 
 ```sh
@@ -453,18 +486,20 @@ Untracked files:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-```sh
-git log --oneline
-0c9cf4b (HEAD -> master) Adding text: "Change #4"
-e27ab48 Adding text: "Error #3"
-1a50004 Adding text: "Change #2"
-834ec2b Adding text: "Change #1"
-```
-
 To accept the changes:
 `git checkout .`
 
 In the case of also removing a created file:
+
+```sh
+git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        test_file2.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
 
 To check which file will be removed:
 
