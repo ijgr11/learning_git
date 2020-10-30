@@ -38,6 +38,20 @@ SYNOPSIS
 ...
 ```
 
+## [Git Three States](https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F#_the_three_states)
+
+Pay attention now — here is the main thing to remember about Git if you want the rest of your learning process to go smoothly. Git has three main states that your files can reside in: **modified**, **staged**, and **committed**:
+
+- Modified means that you have changed the file but have not committed it to your database yet.
+
+- Staged means that you have marked a modified file in its current version to go into your next commit snapshot.
+
+- Committed means that the data is safely stored in your local database.
+
+This leads us to the three main sections of a Git project: the working tree, the staging area, and the Git directory.
+
+![three states](https://git-scm.com/book/en/v2/images/areas.png)
+
 ## Git File Status
 
 From [Git Basics - Recording Changes to the Repository](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository#:~:text=Untracked%20files%20are%20everything%20else,not%20in%20your%20staging%20area.&text=As%20you%20edit%20files%2C%20Git,them%20since%20your%20last%20commit.):
