@@ -45,3 +45,5 @@ git log --oneline
 237209f (dev) Created Error 8
 c0089fd Created Error 7
 ```
+
+## Merge conflicts
