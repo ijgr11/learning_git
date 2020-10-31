@@ -98,3 +98,30 @@ git rebase master
 First, rewinding head to replay your work on top of it...
 Fast-forwarded feature to master.
 ```
+
+Important:
+
+If we make a change in the master branch, and then change and commit to "feature" branch and make a change there and commit, and then we want to sync everything.
+
+We need to first rebase the master branch into the feature branch:
+
+```sh
+[feature]$ git rebase master
+First, rewinding head to replay your work on top of it...
+Applying: Added Change 10
+```
+
+Then once the "feature" branch has been updated/rebased we can change to the master branch and merge commits from feature branch:
+
+```sh
+git checkout master
+Switched to branch 'master'
+
+git merge feature
+Updating 116a0ba..84e4774
+Fast-forward
+ test_file1.txt | 1 +
+ 1 file changed, 1 insertion(+)
+```
+
+This will create a fast-forward merge because we are updating feature branch with the latest changes from master branch and then from there adding/merging the changes from feature branch into master branch making them both have the same commits.
