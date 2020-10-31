@@ -51,9 +51,10 @@ c0089fd Created Error 7
 When there are conflicts git will let us know about that and ask us to chose which change is the one we want to keep.
 
 ```sh
-<<<<<<< HEAD
+Accept Current Change | Accept Incoming Change | Accept Both Changes | Compare Changes
+<<<<<<< HEAD (Current Changes)
 [MASTER]Adding text: "Change #9"
 =======
 [DEV]Adding text: "Change #9"
->>>>>>> dev
+>>>>>>> dev (Incoming Change)
 ```
