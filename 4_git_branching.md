@@ -31,3 +31,24 @@ And running again `git branch` will return:
 * test_branch
   master
 ```
+
+If we run `git log --oneline` on the new branch, it will show all commit history as the ones in the master branch at the moment of the creation of the new branch:
+
+```sh
+git log --oneline
+a730213 (HEAD -> test_branch) Updates on Document
+1a68236 General formatting fixes
+3bbc35a Update format 3_git_github
+4717a45 Update 3_git_github & added 4_git_branch
+3370c00 Updated the 3_git_github.md
+```
+
+## Deleting branches
+
+To delete branch locally:
+
+`git branch -d localBranchName`
+
+To delete branch remotely:
+
+`git push origin --delete remoteBranchName`
