@@ -27,3 +27,24 @@ Fast-forward
 ## 3-way Merge
 
 This happens when aftter we created a new branch and worked on it, someone else also made changes to the master branch before we merge the branch and master branch
+<<<<<<< HEAD
+=======
+
+![3-way](https://wac-cdn.atlassian.com/dam/jcr:91b1bdf5-fda3-4d20-b108-0bb9eea402b2/08.svg?cdnVersion=1319)
+
+```sh
+git merge dev
+Merge made by the 'recursive' strategy.
+ test_file1.txt | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+```
+
+Status of the commit history:
+
+```sh
+git log --oneline
+7667ab2 (HEAD -> master) Merge branch 'dev'
+237209f (dev) Created Error 8
+c0089fd Created Error 7
+```
+>>>>>>> dev
