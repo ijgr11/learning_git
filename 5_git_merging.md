@@ -47,3 +47,13 @@ c0089fd Created Error 7
 ```
 
 ## Merge conflicts
+
+When there are conflicts git will let us know about that and ask us to chose which change is the one we want to keep.
+
+```sh
+<<<<<<< HEAD
+[MASTER]Adding text: "Change #9"
+=======
+[DEV]Adding text: "Change #9"
+>>>>>>> dev
+```
