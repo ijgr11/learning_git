@@ -24,6 +24,17 @@ Fast-forward
  1 file changed, 3 insertions(+), 1 deletion(-)
 ```
 
+When both branches have the same files/changes, the history looks like this:
+
+`(HEAD -> feature, master)`
+
+```sh
+git log --oneline
+1254c21 (HEAD -> dev, master) handling merge aborts
+a2d29d2 (origin/master) Adding notes for Merge conflicts
+0d9336b Adding notes for Merge conflicts
+```
+
 ## 3-way Merge
 
 This happens when aftter we created a new branch and worked on it, someone else also made changes to the master branch before we merge the branch and master branch
@@ -71,3 +82,11 @@ Automatic merge failed; fix conflicts and then commit the result.
 We can cancel it by running:
 
 `git merge --abort`
+
+## Git Rebase
+
+Git rebase is used to integrate changes from one branch into another.
+
+In other words, it is the process of moving or combining a sequence of commits to a new base commit.
+
+![git_rebase](https://wac-cdn.atlassian.com/dam/jcr:e4a40899-636b-4988-9774-eaa8a440575b/02.svg)
