@@ -58,3 +58,16 @@ Accept Current Change | Accept Incoming Change | Accept Both Changes | Compare C
 [DEV]Adding text: "Change #9"
 >>>>>>> dev (Incoming Change)
 ```
+
+In case there is a conflict and we dont want to continue with the merge:
+
+```sh
+git merge dev
+Auto-merging 5_git_merging.md
+CONFLICT (content): Merge conflict in 5_git_merging.md
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+We can cancel it by running:
+
+`git merge --abort`
