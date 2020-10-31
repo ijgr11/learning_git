@@ -90,3 +90,11 @@ Git rebase is used to integrate changes from one branch into another.
 In other words, it is the process of moving or combining a sequence of commits to a new base commit.
 
 ![git_rebase](https://wac-cdn.atlassian.com/dam/jcr:e4a40899-636b-4988-9774-eaa8a440575b/02.svg)
+
+In order to sync the last commit from master into the feature branch we run from the feature branch:
+
+```sh
+git rebase master
+First, rewinding head to replay your work on top of it...
+Fast-forwarded feature to master.
+```
