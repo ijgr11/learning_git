@@ -177,6 +177,12 @@ Changes not staged for commit:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
+To add the file to staging area AND commit it as well we run:
+
+`git commit -am 'Message'`
+
+It only work for modified or deleted files, but if there are new files not tracked then it will not work.
+
 ## Your First commit?
 
 In your first commit you will need to identify yourself:
