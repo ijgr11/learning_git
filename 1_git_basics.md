@@ -287,11 +287,11 @@ Explained:
 ![git_diff](https://www.toolsqa.com/wp-content/gallery/git/git_diff_command.png)
 
 > Note: Diff Command will produce the changes in all the files that are present. For the changes on some specific files only, type the name of the file after the command name.
-
+>
 > Let’s see now how git diff command responds to the operations we just did.
-
+>
 > Now let us breakdown the response given by git diff and understand everything one by one.
-
+>
 > 1. The first line shows the file names that have been considered as the input in git diff. You can see that they have been marked by a and b along with the two different file state that has been taken as input.
 > 2. This line is not of use. This shows the metadata related to the command and the execution of it on the files. As you must be aware by our discussion in Dot Git folder, this is the object hash value required by Git for internal use.
 > 3. This line defines the symbol, called a legend, to tell you what is used to describe the first file and what is used to describe the second file. As you can see, – is used in front of the first file and + is used in front of the second file. So whenever diff shows you the changes related to the first file, they will be marked by – and the changes in the second file will be marked by the symbol +.
