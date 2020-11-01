@@ -263,3 +263,37 @@ git commit -m 'Changed names for files'
  3 files changed, 0 insertions(+), 0 deletions(-)
  rename old_name => new_name (100%)
 ```
+
+## Git Diff, comparing changes.
+
+In order to track the difference between the changes made on a file.
+
+```sh
+git diff
+diff --git a/test_file1.txt b/test_file1.txt
+index f290e76..498d265 100644
+--- a/test_file1.txt
++++ b/test_file1.txt
+@@ -14,3 +14,4 @@ Adding text: "Change #8"
+ [GITHUB] Adding text: "Change #13"
+ [GITHUB] Adding text: "Change #14"
+ [GITHUB] Adding text: "Change #15"
++[LOCAL] Adding text: "Change #16"
+\ No newline at end of file
+```
+
+Explained:
+
+![git_diff](https://www.toolsqa.com/wp-content/gallery/git/git_diff_command.png)
+
+> Note: Diff Command will produce the changes in all the files that are present. For the changes on some specific files only, type the name of the file after the command name.
+
+> Let’s see now how git diff command responds to the operations we just did.
+
+> Now let us breakdown the response given by git diff and understand everything one by one.
+
+> 1. The first line shows the file names that have been considered as the input in git diff. You can see that they have been marked by a and b along with the two different file state that has been taken as input.
+> 2. This line is not of use. This shows the metadata related to the command and the execution of it on the files. As you must be aware by our discussion in Dot Git folder, this is the object hash value required by Git for internal use.
+> 3. This line defines the symbol, called a legend, to tell you what is used to describe the first file and what is used to describe the second file. As you can see, – is used in front of the first file and + is used in front of the second file. So whenever diff shows you the changes related to the first file, they will be marked by – and the changes in the second file will be marked by the symbol +.
+> 4. The fourth line shows you symbol @@ and symbols ahead of it. They are called chunks. Chunks in git diff define the change’ summary. In our image below the following chunk can be seen @@ -1,2 +1 @@
+> 5. This means that line one and two were changed in the first file and line one was changed in the second file. Remember the – and + symbol used in the third point to as a symbol to the first and second file respectively.
