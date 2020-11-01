@@ -239,6 +239,62 @@ e4faa68 (HEAD -> master) Created new file for chapter 3
 c0018cb Initial Commit
 ```
 
+A more detailed and "graphic" way to represent the same:
+
+```sh
+git log --oneline --decorate --graph --all
+* a313842 (HEAD -> master, origin/master) Git diff udpates
+* 0526097 Git diff examples update
+* fa2b03b Git diff examples
+* df4c08e Updated protecting branches
+* a6eb20b Updated 6_git_forking
+*   09213bf Merge branch 'master' of https://github.com/ijgr11/learning_git
+|\
+| *   f264e69 Merge pull request #2 from ijgr11/test
+| |\
+| | *   dcf63e4 Merge branch 'master' into test
+| | |\
+| | |/
+| |/|
+| * | 53a48b0 Updated [GITHUB] Adding text: "Change #15" -Master
+| | * 104823f Updated [GITHUB] Adding text: "Change #14"
+| | * a5ffdc4 Added [GITHUB] Adding text: "Change #13"
+| |/
+| *   7521697 Merge pull request #1 from ijgr11/feature-1
+| |\
+| | * 2a2a9a7 [GITHUB] Adding text: "Change #12"
+| | * ee0e7f8 Adding text: "Change #11"
+| |/
+* | fe55646 add 6_git_forking
+|/
+* 8f977e3 rebase from 5_git to feat and them merged
+* 84e4774 Added Change 10
+* 116a0ba Added rebase to 5_git
+* 5ab6874 Updates on git 5
+* 1254c21 handling merge aborts
+* a2d29d2 Adding notes for Merge conflicts
+* 0d9336b Adding notes for Merge conflicts
+*   57fb8ca Merge branch 'dev'
+|\
+| * 6d4ff2a Added Change #9
+* | 12a2fa0 Added Change #9 on master
+|/
+* 0aef167 Merge Conflict
+* 5922bbe Updated documentation
+*   af406c4 Updated git 5
+|\
+| * 3fa481a Added info for 3-way
+* |   7667ab2 Merge branch 'dev'
+|\ \
+| |/
+| * 237209f Created Error 8
+| * c0089fd Created Error 7
+* | 7c2ccd2 Updated git 1 and git 5
+* | ce2fa13 Created 5_git_merging
+|/
+* 7b0a231 Added Change #6 to test_file1
+```
+
 ## Git Changing/Moving Names to files/folders
 
 In order to change name to a file or folder or to move it to a different location do not change it directly to the file, instead use:
