@@ -13,3 +13,7 @@ To Clone, we can do it from our local environment.
 3. Copy the link (you can use the HTTPS or SSH option)
 4. Once copied, run the following command `git clone <link_of_the_repo>`
 5. And Voilá!
+
+**NOTE:**
+Forking is for contributors
+Cloning is for collaborators
