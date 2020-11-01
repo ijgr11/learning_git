@@ -17,3 +17,13 @@ To Clone, we can do it from our local environment.
 **NOTE:**
 Forking is for contributors
 Cloning is for collaborators
+
+## Protecting Branches
+
+Under the master branch.
+
+1. Click on Settings
+2. Branches
+3. _Branch protection rules_ click on "add Rule"
+4. Enter the name pattern
+5. Enable all the settings you require to protect your branches.
