@@ -297,3 +297,5 @@ Explained:
 > 3. This line defines the symbol, called a legend, to tell you what is used to describe the first file and what is used to describe the second file. As you can see, – is used in front of the first file and + is used in front of the second file. So whenever diff shows you the changes related to the first file, they will be marked by – and the changes in the second file will be marked by the symbol +.
 > 4. The fourth line shows you symbol @@ and symbols ahead of it. They are called chunks. Chunks in git diff define the change’ summary. In our image below the following chunk can be seen @@ -1,2 +1 @@
 > 5. This means that line one and two were changed in the first file and line one was changed in the second file. Remember the – and + symbol used in the third point to as a symbol to the first and second file respectively.
+
+Ref [Git-Diff](https://www.toolsqa.com/git/git-diff/)
